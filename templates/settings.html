@@ -1,0 +1,59 @@
+{% extends "templates/base.html" %}
+
+{% block head %}
+  <style type="text/css">
+    .starter-template {
+      padding: 40px 15px;
+      text-align: center;
+    }
+
+    .form-group{
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <div class="starter-template">
+    <form class="form-horizontal" role="form" method="post">
+      <div class="form-group">
+        <input name="urlkey" type="hidden" />
+        <div class="form-group">
+            <label for="value" class="col-sm-2 control-label">Tempo para Tarantella</label>
+            <div class="col-sm-10">
+                <div class="input-group">
+                    <input type="number" class="form-control" id="tarantella" name="tarantella" step="1" placeholder="in minutes" value="{{ settings.tarantella }}">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="value" class="col-sm-2 control-label">Tempo para Short Break</label>
+            <div class="col-sm-10">
+                <div class="input-group">
+                    <input type="number" class="form-control" id="short_break" name="short_break" step="1" placeholder="in minutes" value="{{ settings.short_break }}">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="value" class="col-sm-2 control-label">Tempo para Long Break</label>
+            <div class="col-sm-10">
+                <div class="input-group">
+                    <input type="number" class="form-control" id="long_break" name="long_break" step="1" placeholder="in minutes" value="{{ settings.long_break }}">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label"></label>
+          <div class="col-sm-10">
+              <button type="submit" class="btn btn-default pull-left">Salvar</button>
+          </div>
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+{% endblock %}
+
+{% block bodyend %}
+
+{% endblock %}

@@ -1,0 +1,7 @@
+TODO:
+- tela de configurações
+- login com facebook/google
+- internacionalização
+
+DONE:
+- tocar som quando finalizar OK
