@@ -89,16 +89,16 @@
           // else
           //   $('#progressbar').addClass('active');
 
-          start_timer(1);
+          start_timer({{ settings.tarantella }});
         });
 
 
         $('#btn_short_break').click(function(){
-          start_timer(10);
+          start_timer({{ settings.short_break }});
         });
 
         $('#btn_long_break').click(function(){
-          start_timer(10);
+          start_timer({{ settings.long_break }});
         });
 
 

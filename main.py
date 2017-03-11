@@ -37,36 +37,38 @@ def render_to_response(request_handler, template, dictionary):
     request_handler.response.write(template.render(dictionary))
 
 
+def get_or_create(cls):
+    key = ndb.Key(cls, users.get_current_user().user_id())
+    cls_instance = key.get()
+
+    if not cls_instance:
+        cls_instance = cls(key=ndb.Key(Settings, users.get_current_user().user_id()))
+        cls_instance.put()
+
+    return cls_instance
+
+
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        template_values = {}
+        settings = get_or_create(Settings)
+        template_values = {'settings': settings}
         render_to_response(self, 'templates/index.html', template_values)
 
 
 class SettingsHandler(webapp2.RequestHandler):
     def get(self):
-        key = ndb.Key(Settings, users.get_current_user().user_id())
-        settings = key.get()
-
-        
-
-        if settings is None:
-            logging.info('uhsaudhsauhduashduashduahu {}'.format(settings))
-            settings = Settings()
-            settings.put()
-
+        settings = get_or_create(Settings)
         template_values = {'settings': settings}
         render_to_response(self, 'templates/settings.html', template_values)
 
     def post(self):
-        key = ndb.Key(Settings, users.get_current_user().user_id())
-        settings = key.get()
+        settings= get_or_create(Settings)
 
-        logging.info('settings {}'.format(settings))
+        #logging.info('settings {}'.format(settings))
         settings.tarantella = int(self.request.get('tarantella'))
         settings.short_break = int(self.request.get('short_break'))
         settings.long_break = int(self.request.get('long_break'))
-        Settings().put()
+        settings.put()
 
         self.redirect('/settings')
 
