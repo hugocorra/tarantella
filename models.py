@@ -10,6 +10,8 @@ class Settings(ndb.Model):
     tarantella = ndb.IntegerProperty(default=25)
     short_break = ndb.IntegerProperty(default=5)
     long_break = ndb.IntegerProperty(default=30)
+    show_timer = ndb.BooleanProperty(default=True)
+    show_progressbar = ndb.BooleanProperty(default=True)
 
     # @classmethod
     # def ancestor(cls):

@@ -68,9 +68,10 @@ class SettingsHandler(webapp2.RequestHandler):
         settings.tarantella = int(self.request.get('tarantella'))
         settings.short_break = int(self.request.get('short_break'))
         settings.long_break = int(self.request.get('long_break'))
+        settings.show_progressbar = bool(self.request.get('show_progressbar'))
+        settings.show_timer = bool(self.request.get('show_timer'))
         settings.put()
-
-        self.redirect('/settings')
+        self.redirect('/')
 
 
 app = webapp2.WSGIApplication([
